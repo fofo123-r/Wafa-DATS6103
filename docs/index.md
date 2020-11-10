@@ -23,10 +23,23 @@ The data was extracted from the US Bureau of Labor Statistics: open("link.html",
 # Data Timeframe:
 The years chosen in this analysis consist of 1 year and 10 months, from Jan 2019 - October 2020. However, the population data for the five states for the year of 2020 is not avaiable; therefore, the population analysis includes only one year which is 2019.
 
-You can use the [editor on GitHub](https://github.com/fofo123-r/Wafa-DATS6103/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+# Importing the packages
+```
+import requests
+import json
+import pandas as pd 
+import plotly.express as px
+```
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
+# Defining the variable and the Series ID needed for the Analysis
+```
+uneployment_rate = {"Total Uneploymentt": "LNS14000000"}
+```
+# Creating a list to only print out the Series IDs
+```
+l = list(uneployment_rate .values())
+l
+```
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
