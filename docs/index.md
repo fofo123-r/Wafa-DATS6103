@@ -278,3 +278,203 @@ fig2.update_xaxes(
 fig2.show()
 ```
 ![image](https://user-images.githubusercontent.com/74209404/98618067-60593b00-22ce-11eb-8864-fc55304cb9f4.png)
+
+## Analyzing the Impact of Covid-19 on Employment in the US (Part 2)
+
+```
+# Defining the variables and the Series IDs needed for the Analysis
+
+state_seriesid = {"California":{"unemployment_rate" : 'LASST060000000000003', "Minning" : 'SMS06000001000000001', "Construction": 'SMS06000002000000001', "Manufacturing": 'SMS06000003000000001', "Trade & Transportation" : 'SMS06000004000000001', "Financial Activities": 'SMS06000005500000001', "Education & Health Services": 'SMS06000006500000001', "Leisure & Hospitality": 'SMS06000007000000001', "Government": 'SMS06000009000000001', "Population": 'LNU0004960106'}, 
+                 "Texas":{"unemployment_rate" : 'LASST480000000000003', "Minning" : 'SMS48000001000000001', "Construction": 'SMS48000002000000001', "Manufacturing": 'SMS48000003000000001', "Trade & Transportation" : 'SMS48000004000000001', "Financial Activities": 'SMS48000005500000001', "Education & Health Services": 'SMS48000006500000001', "Leisure & Hospitality": 'SMS48000007000000001', "Government": 'SMS48000009000000001', "Population": 'LNU0004960148'},
+                 "Florida":{"unemployment_rate" : 'LASST120000000000003', "Minning" : 'SMU12000001000000001', "Construction": 'SMS12000002000000001', "Manufacturing": 'SMS12000003000000001', "Trade & Transportation" : 'SMS12000004000000001', "Financial Activities": 'SMS12000005500000001', "Education & Health Services": 'SMS12000006500000001', "Leisure & Hospitality": 'SMS12000007000000001', "Government": 'SMS12000009000000001', "Population": 'LNU0004960112'},
+                  "Newyork":{"unemployment_rate" : 'LASST360000000000003', "Minning" : 'SMS36000001000000001', "Construction": 'SMS36000002000000001', "Manufacturing": 'SMS36000003000000001', "Trade & Transportation" : 'SMS36000004000000001', "Financial Activities": 'SMS36000005500000001', "Education & Health Services": 'SMS36000006500000001', "Leisure & Hospitality": 'SMS36000007000000001', "Government": 'SMS36000009000000001', "Population": 'LNU0004960136'},
+                  "Pennsylvania":{ "unemployment_rate" : 'LASST420000000000003', "Minning" : 'SMS42000001000000001', "Construction": 'SMS42000002000000001', "Manufacturing": 'SMS42000003000000001', "Trade & Transportation" : 'SMS42000004000000001', "Financial Activities": 'SMS42000005500000001', "Education & Health Services": 'SMS42000006500000001', "Leisure & Hospitality": 'SMS42000007000000001', "Government": 'SMS42000009000000001', "Population": 'LNU0004960142'}}
+  ```
+   ``` 
+  # Creating a loop to only print out the Series IDs 
+lst = []
+
+for k,b in state_seriesid.items():
+    lst+=list(b.values())
+  ```
+   ``` 
+  # Printing out the Series IDs
+lst
+``` 
+``` 
+# Since the website allows only to print 25 values at once, I had to slice the list
+
+lst1 = lst[:25]
+lst2 = lst[25:]
+``` 
+``` 
+# Extracting the data from BLS.gov using API
+# Did a loop to include the two lists and choose the years
+json_lists = []
+
+for l in [lst1,lst2]: 
+    headers = {'Content-type': 'application/json'}
+    data = json.dumps({"seriesid":l,"startyear":"2018", "endyear":"2020"})
+    p = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
+    json_data = json.loads(p.text)
+    json_lists.append(json_data)
+``` 
+``` 
+# print the data to see how it looks like
+# we see that all the population series IDs has no data for year 2020
+#print (json_data)
+#json_data["Results"]["series"]
+``` 
+```
+# joining the two lists
+
+s = json_lists[0]["Results"]["series"] + json_lists[1]["Results"]["series"]
+s
+```
+
+```
+# Creating a loop for states, keys which include the variables, and Values that include Series IDs
+
+list_df = []
+counter = 0
+
+for state,dic in state_seriesid.items():
+
+    for key,value in dic.items():
+         
+        if s [counter] ["seriesID"] == value:
+            df=pd.DataFrame.from_dict(data = s[counter]["data"])
+            df["label"] = key
+            df["State"] = state
+            list_df.append(df)
+            counter+=1
+       
+    
+final_df = pd.concat(list_df)
+final_df
+```
+```
+# creating state Abbreviation
+ab_states = {"California": "CA", "Texas": "TX", "Florida": "FL", "Newyork": "NY", "Pennsylvania": "PA"}
+ab_states 
+```
+```
+# Adding the state Abbreviation to the final_df data
+final_df.loc[:,"StateAbbreviation"] = final_df.loc[:,"State"].map(ab_states)
+```
+```
+# Cleaning the data and choosing the needed columns for the analysis
+
+final_df = final_df[["year", "periodName","label","State","value", "StateAbbreviation"]]
+final_df
+```
+```
+# renaming the columns
+
+final_df = final_df.rename(columns = {"year": "Year", "periodName": "Month", "value": "Value"}) 
+final_df
+```
+```
+# Since the population data is annual, it had to be filtered 
+
+population_filter = final_df["label"] == "Population"
+population_filter 
+```
+```
+# define the filtered population to graph it by it self
+
+population_dataframe = final_df[population_filter].copy()
+population_dataframe 
+```
+```
+# choosing 2019 year for population only
+pop_2019 = population_dataframe["Year"] == "2019"
+pop_2019
+```
+```
+# printing population data for the year of 2019 only 
+
+population = population_dataframe[pop_2019].copy()
+population
+```
+```
+fig = px.choropleth(population, locations="StateAbbreviation", locationmode="USA-states", 
+    color= "State" , scope="usa", labels = {"Value": "Value"}, hover_data = ["State", "Value"], title = "Population Level in Thousands - Nonveterans, 18 years and over in 2019")
+fig.show()
+```
+[image](https://user-images.githubusercontent.com/74209404/98619230-d068c080-22d0-11eb-9fa8-5844ff8c7ef1.png)
+```
+# Drop the population variable from the final data
+
+final_df = final_df[~population_filter]
+final_df
+```
+```
+# formating the year and the month and joining them together 
+
+final_df["Date"] = final_df["Year"] + final_df["Month"] 
+
+final_df["Date"] = pd.to_datetime(final_df["Date"], format = "%Y%B")
+
+final_df
+```
+
+```
+ #choosing the date from Jan 2019 and above
+ 
+time_filter = final_df["Date"] >= "2019-01-01"
+final_df = final_df[time_filter]
+final_df
+```
+```
+# Filter the data by unemployment rate 
+
+filter_in = final_df["label"]=="unemployment_rate"
+filter_in
+```
+```
+# Graphing the unemployment Rates for each state
+
+fig1 = px.bar(final_df[filter_in], x = "Date" , y = "Value", labels = {"Value": "Rates"}, 
+       color= "State" , title = "Unemployment Rates",  barmode = "group")
+
+fig1.update_xaxes(
+    dtick="M1",
+    tickformat="%b\n%Y")
+fig1.show()
+```
+
+
+![image](https://user-images.githubusercontent.com/74209404/98620004-681ade80-22d2-11eb-90f6-07bd386728e4.png)
+
+
+```
+# Graphing number of employees for several indutries by each state
+# Did a loop to choose the label by industries and drop unemployment rates
+
+for industry in final_df.loc[~filter_in,"label"].unique():
+    filter_ind = final_df["label"]== industry
+    fig2 = px.bar(final_df[filter_ind], x= "Date" , y = "Value", labels = {"Value": "All Employees, In Thousands"}, color = "State" ,  title = f"{industry} Industry", barmode = "group")
+    
+    fig2.update_xaxes(
+    dtick="M1",
+    tickformat="%b\n%Y")
+    fig2.show()
+  ```
+  
+![image](https://user-images.githubusercontent.com/74209404/98620100-9f898b00-22d2-11eb-8a8c-d7a6aa223d32.png)
+
+![image](https://user-images.githubusercontent.com/74209404/98620177-c5169480-22d2-11eb-8737-8315c3b91fe9.png)
+
+![image](https://user-images.githubusercontent.com/74209404/98620248-ec6d6180-22d2-11eb-8985-79c464939fca.png)
+
+![image](https://user-images.githubusercontent.com/74209404/98620330-1b83d300-22d3-11eb-9aa5-58c402f73c3f.png)
+
+![image](https://user-images.githubusercontent.com/74209404/98620445-5128bc00-22d3-11eb-8db5-f64a316c0725.png)
+
+![image](https://user-images.githubusercontent.com/74209404/98620524-6f8eb780-22d3-11eb-99d9-6293490fb107.png)
+
+![image](https://user-images.githubusercontent.com/74209404/98620586-8c2aef80-22d3-11eb-96ee-bb9a587a3b65.png)
+
+![image](https://user-images.githubusercontent.com/74209404/98620642-abc21800-22d3-11eb-80c8-4f4382a1f6c8.png)
+
