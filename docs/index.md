@@ -478,3 +478,12 @@ for industry in final_df.loc[~filter_in,"label"].unique():
 
 ![image](https://user-images.githubusercontent.com/74209404/98620642-abc21800-22d3-11eb-80c8-4f4382a1f6c8.png)
 
+# Conclusion:
+
+We see that unemployment rates rose exponentially right after march 2020 in the US, and this is when many states decided to shut down in response of controlling the spread of the coronavirus. Hispanic unemployment rates were the highest in April and May of this year.  However, in June African Americans unemployment rates were the highest and remained high among other ethnicities. 
+
+As for Education attainment, unemployment rates before and during COVID-19 were the highest among employees who have less than a high school diploma. Nevertheless, employees who have a bachelor’s degree and higher have the lowest unemployment rates.
+In addition, California experienced the highest unemployment rates in April and May of this year. After May, New York unemployment rates were the highest among California, Texas, Florida, and Pennsylvania. 
+
+As for Industries in the California, Texas, Florida, New York , and Pennsylvania , the employment levels in the leisure and Hospitality Industry were lowest from April 2020 till Sept 2020. 
+
