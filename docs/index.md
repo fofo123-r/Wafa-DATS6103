@@ -1,4 +1,27 @@
-## Welcome to GitHub Pages
+## Analyzing the Impact of Covid-19 on Employment and Idustries in the US (Part 1)
+                      
+The corona virus (COVID -19) has created an economic crisis worldwide, forcing businesses and big firms to shut down in order to stop the fast spread of the virus. This lock down has negatively impacted the global employment levels including the US. For instance, certain industries filed for bankruptcy, which in result had to layoff many of its employees. Nevertheless, many idustries benefited from the pandemic including online retailing such as Amazon, supermarkets, entertainment such as Netflix, etc.
+
+This project focuses on certain aspects to understand which industries, demographic backgrounds, and employees educational attainment are more vulnerable to unprecedented events that cuase economic crisis such as COVID-19.
+
+The Analysis Includes The Following Steps:
+1) Analyzing unemployment rates in the US before and after COVID-19 for the age of 16 and over.
+
+2) Analyzing unemployment rates by ethnicity in the US before and after COVID-19 for the age of 16 and over.
+
+3) Analyzing unemployment rates by educational attainment in the US before and after COVID-19.
+
+4) Narrowing the analysis to the five hights populated states in the US. These states are: California, Texas, Florida, New York, and Pennsylvania.
+
+5) Analyzing unemployment rates in the chosen five states.
+
+6) Analyzing the employment level by industry in the chosen five states before and after COVID-19.
+
+# Data Source:
+The data was extracted from the US Bureau of Labor Statistics: open("link.html", "w").write(' Link ')
+
+# Data Timeframe:
+The years chosen in this analysis consist of 1 year and 10 months, from Jan 2019 - October 2020. However, the population data for the five states for the year of 2020 is not avaiable; therefore, the population analysis includes only one year which is 2019.
 
 You can use the [editor on GitHub](https://github.com/fofo123-r/Wafa-DATS6103/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
