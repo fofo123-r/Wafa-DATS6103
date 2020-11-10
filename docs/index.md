@@ -156,14 +156,127 @@ print (json_data)
 
 json_data["Results"]["series"]
 ```
+```
+# Creating a loop for unemployment by ethnicity, keys which include the variables, and Values that include Series IDs
+
+list_df = []
+counter = 0
+
+s = json_data["Results"]["series"]
+
+for key,value in unemployment_race.items():
+    print(key,value)
+
+    if s [counter] ["seriesID"] == value:
+        df=pd.DataFrame.from_dict(data = s[counter]["data"])
+        df["Ethnicity"] = key
+        list_df.append(df)
+        counter+=1
+     
+final_df = pd.concat(list_df)
+final_df
+```
+```
+final_df = final_df[["year","periodName","value","Ethnicity"]]
+final_df
+```
+```
+final_df = final_df.rename(columns = {"year": "Year", "periodName": "Month", "value": "Unemployment Rates"}) 
+final_df
+```
+```
+final_df["Date"] = final_df["Year"] + final_df["Month"] 
+
+final_df["Date"] = pd.to_datetime(final_df["Date"], format = "%Y%B")
+
+final_df
+```
+```
+fig1 = px.bar(final_df, x = "Date" , y = "Unemployment Rates", labels = {"Value": "Ethnicity"}, 
+       color= "Ethnicity" , title = "Unemployment Rates by Ethnicity - 16 years and over",  barmode = "group")
+
+fig1.update_xaxes(
+    dtick="M1",
+    tickformat="%b\n%Y")
+fig1.show()
+```
 
 
 
 
 
 
+```
+unemployment_educ = {"unemployment rate":{"Less than a High School diploma" : 'LNS14027659', "High School graduates, no college" : 'LNS14027660', "Some college or associate degree": 'LNS14027689', "Bachelor's degree and higher": 'LNS14027662'}} 
+```
 
+```
+t = []
 
+for k,b in unemployment_educ.items():
+    t+=list(b.values())
+t 
+```
+
+```
+json_t= []
+
+headers = {'Content-type': 'application/json'}
+data = json.dumps({"seriesid":t,"startyear":"2019", "endyear":"2020"})
+p = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
+json_da = json.loads(p.text)
+json_t.append(json_da)
+```
+
+```
+print (json_da)
+```
+
+```
+json_da["Results"]["series"]
+```
+```
+list_edu = []
+counter = 0
+
+s = json_da["Results"]["series"]
+
+for key,value in unemployment_educ["uemployment rate"].items():
+    
+
+    if s[counter]["seriesID"] == value:
+        edu=pd.DataFrame.from_dict(data = s[counter]["data"])
+        edu["Education"] = key
+        list_edu.append(edu)
+        counter+=1     
+    
+final_edu = pd.concat(list_edu)
+final_edu
+```
+```
+final_edu = final_edu[["year","periodName","value","Education"]]
+final_edu
+```
+```
+final_edu = final_edu.rename(columns = {"year": "Year", "periodName": "Month", "value": "Unemployment Rates", "Education":"Education"}) 
+final_edu
+```
+```
+final_edu["Date"] = final_edu["Year"] + final_edu["Month"] 
+
+final_edu["Date"] = pd.to_datetime(final_edu["Date"], format = "%Y%B")
+
+final_edu
+```
+```
+fig2 = px.line(final_edu, x = "Date" , y = "Unemployment Rates", labels = {"Value": "Education"}, color = "Education"
+        ,title = "Unemployment Rates by Education")
+
+fig2.update_xaxes(
+    dtick="M1",
+    tickformat="%b\n%Y")
+fig2.show()
+```
 
 ### Markdown
 
