@@ -18,8 +18,11 @@ The Analysis Includes The Following Steps:
 6) Analyzing the employment level by industry in the chosen five states before and after COVID-19.
 
 # Data Source:
-The data was extracted from the US Bureau of Labor Statistics: open("link.html", "w").write(' Link ')
+The data was extracted from the US Bureau of Labor Statistics: 
 
+```
+open("link.html", "w").write(' Link ')
+```
 # Data Timeframe:
 The years chosen in this analysis consist of 1 year and 10 months, from Jan 2019 - October 2020. However, the population data for the five states for the year of 2020 is not avaiable; therefore, the population analysis includes only one year which is 2019.
 ```
