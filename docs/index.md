@@ -1,4 +1,4 @@
-## Analyzing the Impact of Covid-19 on Employment and Idustries in the US (Part 1)
+## Analyzing the Impact of Covid-19 on Employment and Industries in the US (Part 1)
                       
 The corona virus (COVID -19) has created an economic crisis worldwide, forcing businesses and big firms to shut down in order to stop the fast spread of the virus. This lock down has negatively impacted the global employment levels including the US. For instance, certain industries filed for bankruptcy, which in result had to layoff many of its employees. Nevertheless, many idustries benefited from the pandemic including online retailing such as Amazon, supermarkets, entertainment such as Netflix, etc.
 
