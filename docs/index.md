@@ -38,6 +38,88 @@ uneployment_rate = {"Total Uneploymentt": "LNS14000000"}
 l = list(uneployment_rate .values())
 l
 ```
+```
+# Extracting the data from BLS.gov using API
+
+json_l= []
+
+headers = {'Content-type': 'application/json'}
+data = json.dumps({"seriesid":l,"startyear":"2019", "endyear":"2020"})
+p = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
+json_d = json.loads(p.text)
+json_l.append(json_d)
+```
+
+```
+# print the data to see how it looks like
+
+print (json_d)
+
+```
+
+```
+# from the results above the data includes "Results" and "Series". The code below prints it.
+
+json_d["Results"]["series"]
+```
+```
+# Creating a loop for total unemployment, keys which include the variable, and Values that include Series IDs
+
+list_ue = []
+counter = 0
+
+s = json_d["Results"]["series"]
+
+for key,value in uneployment_rate.items():
+    print(key,value)
+
+    if s [counter] ["seriesID"] == value:
+        ue=pd.DataFrame.from_dict(data = s[counter]["data"])
+        ue["unemployment"] = key
+        list_ue.append(ue)
+        counter+=1
+       
+    
+final_ue = pd.concat(list_ue)
+final_ue
+```
+```
+# Cleaning the data and choosing the needed columns for the analysis
+
+final_ue = final_ue[["year","periodName","value"]]
+final_ue
+```
+```
+# renaming the columns
+
+final_ue = final_ue.rename(columns = {"year": "Year", "periodName": "Month", "value": "Total Unemployment Rates"}) 
+final_ue
+```
+```
+# formating the year and the month and joining them together 
+
+final_ue["Date"] = final_ue["Year"] + final_ue["Month"] 
+
+final_ue["Date"] = pd.to_datetime(final_ue["Date"], format = "%Y%B")
+
+final_ue
+```
+```
+# plotting the above data, which is Unemployment Rates in The US 
+
+fig = px.area(final_ue, x = "Date" , y = "Total Unemployment Rates", 
+        title = "Unemployment Rates in The US - 16 years and over")
+
+fig.update_xaxes(
+    dtick="M1",
+    tickformat="%b\n%Y")
+fig.show()
+```
+
+
+
+
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
