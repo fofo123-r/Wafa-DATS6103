@@ -115,7 +115,7 @@ fig.update_xaxes(
     tickformat="%b\n%Y")
 fig.show()
 ```
-[[/images/myimage.jpg]]
+[[/images/First.jpg]]
 
 
 ```
