@@ -115,7 +115,7 @@ fig.update_xaxes(
     tickformat="%b\n%Y")
 fig.show()
 ```
-[[/images/First.jpg]]
+![image](https://user-images.githubusercontent.com/74209404/98617704-921dd200-22cd-11eb-89a6-4e6ba6ebca6a.png)
 
 
 ```
