@@ -115,6 +115,51 @@ fig.update_xaxes(
     tickformat="%b\n%Y")
 fig.show()
 ```
+[[/images/myimage.jpg]]
+
+
+```
+# Defining the variables and the Series IDs needed for the Analysis
+
+unemployment_race = {"Hispanic" : 'LNS14000009',"African American":'LNS14000006',
+                   "White": 'LNS14000003',
+                   "Asian": 'LNS14032183'} 
+
+unemployment_race
+```
+
+```
+# Creating a list to only print out the Series IDs
+
+lst = list(unemployment_race.values())
+lst
+```
+```
+# Extracting the data from BLS.gov using API
+
+json_lists = []
+
+headers = {'Content-type': 'application/json'}
+data = json.dumps({"seriesid":lst,"startyear":"2019", "endyear":"2020"})
+p = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
+json_data = json.loads(p.text)
+json_lists.append(json_data)
+```
+
+```
+# print the data to see how it looks like
+
+print (json_data)
+```
+```
+# from the results above the data includes "Results" and "Series". The code below prints it.
+
+json_data["Results"]["series"]
+```
+
+
+
+
 
 
 
