@@ -11,7 +11,7 @@ The Analysis Includes The Following Steps:
 
 3) Analyzing unemployment rates by educational attainment in the US before and after COVID-19.
 
-4) Narrowing the analysis to the five hights populated states in the US. These states are: California, Texas, Florida, New York, and Pennsylvania.
+4) Narrowing the analysis to five states that have the highest Nonveterans population levels, who are 18 years and over in 2019. These states are: California, Texas, Florida, New York, and Pennsylvania.
 
 5) Analyzing unemployment rates in the chosen five states.
 
