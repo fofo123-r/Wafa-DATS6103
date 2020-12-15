@@ -55,7 +55,7 @@ universities.head()
 ```
 
 
-#Creating a vriable for ivy-league
+#Creating a variable for ivy-league
 
 ```
 ivy_league = universities[universities['Ivy league']]
@@ -83,7 +83,7 @@ sat
 pd.melt(sat, id_vars=['University Name'], value_vars=['SAT Scores 25th (Critical Reading)','SAT Scores 25th (math)', 'SAT Scores 25th(writing)', 'SAT Scores 75th (critical reading)','SAT Scores75th(math)', 'SAT Scores 75th (writing)'])
 
 ```
-#creating a vraiable for pd.melt, dropping the NaN values, and 
+#creating a variable for pd.melt, dropping the NaN values, and 
 
 ```
 long_sat = pd.melt(sat, id_vars=['University Name'], value_vars=['SAT Scores 25th (Critical Reading)','SAT Scores 25th (math)', 'SAT Scores 25th(writing)', 'SAT Scores 75th (critical reading)','SAT Scores75th(math)', 'SAT Scores 75th (writing)'])
