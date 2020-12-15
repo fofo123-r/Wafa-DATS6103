@@ -190,12 +190,20 @@ fig = px.bar(admission_rates, x = "University Name" , y = "Admission Rate",
 fig.show()
 
 ```
+
+![image](https://user-images.githubusercontent.com/74209404/102160143-dcf1b300-3e52-11eb-8096-8ad954c2520e.png)
+
+
 ### (B) Ivy League SAT Scores:
 ```
 fig1 = px.scatter(long_sat, x = "University Name" , y = "value",  hover_data = {'sat percentile'},
        color= "University Name" , title = 'Ivy League SAT Scores',  facet_col = 'sat section', height = 800)
 fig1.show()
 ```
+
+![image](https://user-images.githubusercontent.com/74209404/102160211-fe529f00-3e52-11eb-820d-5f5cffc366c0.png)
+
+
 ### (C) Ivy League Faculty Average Monthly Salary:
 ```
 fig2 = px.bar(salary, x = "University Name" , y = ' (Average Faculty Salary per month)', 
@@ -203,12 +211,23 @@ fig2 = px.bar(salary, x = "University Name" , y = ' (Average Faculty Salary per 
 fig2.show()
 
 ```
+
+![image](https://user-images.githubusercontent.com/74209404/102160640-d1eb5280-3e53-11eb-881a-840391e92ccc.png)
+
+
+
+
+
+
 ### (D)  Percentage of Enrollment by Ethnicity in Ivy League Universities:
 ```
 fig3 = px.bar(enroll, x = 'Ethnicity' , y = 'value', 
        color= 'University Name' , title = 'Percentage of Enrollment by Ethnicity', height = 1000, barmode = 'group')
 fig3.show()
 ```
+
+
+![image](https://user-images.githubusercontent.com/74209404/102160296-2a6e2000-3e53-11eb-8221-5f8ec8424eb6.png)
 
 ### (E) Ivy League Tuition Fees:
 ```
@@ -217,31 +236,41 @@ fig4 = px.bar(cost, x = 'Fees' , y = 'Value',
 fig4.show()
 
 ```
+
+![image](https://user-images.githubusercontent.com/74209404/102160341-42de3a80-3e53-11eb-9ea6-63e5485b0d6e.png)
+
+
+
 ### (F)  Analysis 1: Tuition Cost Vs. Income in Ivy League Universities Only:
 ```
 px.scatter(roi, x = 'Average cost of attendance' , y = 'Mean earnings of students working and not enrolled 10 years after entry in the highest income tercile $75,001', 
        color= 'University Name' , title = 'Analysis')
 ```
+
+
+![image](https://user-images.githubusercontent.com/74209404/102160417-66a18080-3e53-11eb-933c-db285ddad572.png)
+
+
 ### (H)  Analysis 2: Comparison of Tuition Cost Vs. Income in Ivy League and Non Ivy League:
 ```
 px.scatter(universities, x = 'Average cost of attendance' , y = 'Mean earnings of students working and not enrolled 10 years after entry in the highest income tercile $75,001', 
        color= 'Ivy league' , title = 'Analysis', hover_data ={'University Name'})
+       
 
 ```
+
+![image](https://user-images.githubusercontent.com/74209404/102160475-86d13f80-3e53-11eb-93f8-bd58a6a8ee42.png)
+
+
 ### (I)  Analysis 3: Comparison of Admission rate Vs. SAT Scores 25th (math) in Ivy League and Non Ivy League:
 ```
 px.scatter(universities, x = "Admission Rate" , y = 'SAT Scores 25th (math)', 
        color= 'Ivy league' , title = 'Analysis', hover_data ={'University Name'})
 
 ```
-![image](https://user-images.githubusercontent.com/74209404/98618067-60593b00-22ce-11eb-8864-fc55304cb9f4.png)
 
-![image](https://user-images.githubusercontent.com/74209404/98620524-6f8eb780-22d3-11eb-99d9-6293490fb107.png)
 
-![image](https://user-images.githubusercontent.com/74209404/98620586-8c2aef80-22d3-11eb-96ee-bb9a587a3b65.png)
-
-![image](https://user-images.githubusercontent.com/74209404/98620642-abc21800-22d3-11eb-80c8-4f4382a1f6c8.png)
-
+![image](https://user-images.githubusercontent.com/74209404/102160558-a8322b80-3e53-11eb-85a7-5ff03cb3ebab.png)
 
 ## SECTION 4: Conclusion
 
