@@ -1,4 +1,3 @@
-# DATS 6103 - Individual Project 2 - Wafa Altuwaijri"
+# DATS 6103 - Individual Project 3 - Wafa Altuwaijri"
 
- The Impact of COVID-19 on Employment in the US
-
+Analyzing U.S. Universities
