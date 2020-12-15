@@ -90,7 +90,7 @@ long_sat = pd.melt(sat, id_vars=['University Name'], value_vars=['SAT Scores 25t
 long_sat = long_sat.dropna()
 ```
 
-#creating a 0 value for variable column in long_sat dataframe
+#creating a 0 and 1 values for variable column in long_sat dataframe
 
 ```
 sat_temp = long_sat['variable'].str.split("(",expand=True)
