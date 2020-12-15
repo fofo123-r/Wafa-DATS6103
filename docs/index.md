@@ -298,17 +298,18 @@ px.scatter(universities, x = "Admission Rate" , y = 'SAT Scores 25th (math)',
 
 ### Acceptance Rates
 
-When comparing the Ivy league universities, we see that harvard has the lowest acceptance rate while Cornell has the Highest acceptance rate
+When comparing the Ivy league universities, we see that Stanford has the lowest acceptance rate while Cornell has the Highest acceptance rate
 
 ###  Ivy League SAT Scores
 
-We see that Harvard has the highest SAT scores in the 75th percentile for crtitcal reading. As for the 75th percentile,  Harvard, Yale, Princton, and Columbia have equal math and writing SAT scores. 
 
-Cornell University has the lowest 75th and 25th percentiles SAT Scores in reading and math. Dartmouth university has the lowest 25th percentile SAT scores in writing
+We see that Harvard has the highest SAT scores in the 75th percentile for crtitcal reading. As for the 75th percentile in writing, Harvard, Yale, Princton, and Columbia have equal SAT scores.
+
+Cornell University has the lowest 75th and 25th percentiles SAT Scores in reading and the lowest 25th percentiles SAT Scores in math. Dartmouth university has the lowest 25th percentile SAT scores in writing
 
 ### Ivy League Faculty Average Monthly Salary
 
-fig2 shows that Harvard, Princton and Stanford faculty have the highest average monthly salary. While Dartmouth university Faculty has the lowest average monthly salary.
+fig2 shows that Harvard faculty has the highest average monthly salary. While Cornell university Faculty has the lowest average monthly salary
 
 ### percentage of Enrollment By Ethnicity
 
