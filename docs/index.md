@@ -1,5 +1,5 @@
   # Analyzing U.S. Universities
-                           DATS 6103 – Individual Project 3 – Wafa Altuwaijri
+                         
 Many students plan to invest in their future. They search for the best university that offer the best programs. In addition, students want to find the best affordable program that can be rewarding once they graduate. In this analysis students can have a great idea on which university to choose based on costs such as tuition fees, school supplies, etc and the salary they can earn after graduation.
 
 # Data Source:
