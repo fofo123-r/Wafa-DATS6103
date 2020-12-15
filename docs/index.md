@@ -274,4 +274,4 @@ fig4 shows that Columbia university had the highest tuition fees, while Princeto
 
 Students who are interested in attending the lowest cost university in which the univesity aulumuni earn the higest earning in the 75,000 should join Massachusetts Institute of Technology(MIT). The average cost of attending (MIT) is 67K and the average earning is 172K.
 
-Students who cannot afford to join Ivy League universities and want to join a university in which it's aulumni can earn as high as an ivey league aulumni should apply for the United States Merchant Marine Academy in which its alumni earn an average of 103K which is higher than Brown aulumni who earn an average of 91.7K
+Students who cannot afford to join Ivy League universities and want to join a university in which it's aulumni can earn as high as an ivey league aulumni should apply for the United States Merchant Marine Academy in which its alumni earn an average of 103K which is higher than Brown aulumni who earn an average of 91.7K.
