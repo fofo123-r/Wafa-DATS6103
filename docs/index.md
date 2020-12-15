@@ -286,7 +286,7 @@ Cornell University has the lowest 75th and 25th percentiles SAT Scores in readin
 
 ### Ivy League Faculty Average Monthly Salary
 
-fig2 shows that Harvard, Princton and Stanford faculty have the highest average monthly salary. While Dartmouth university Faculty has the lowest average monthly salary
+fig2 shows that Harvard, Princton and Stanford faculty have the highest average monthly salary. While Dartmouth university Faculty has the lowest average monthly salary.
 
 ### percentage of Enrollment By Ethnicity
 
