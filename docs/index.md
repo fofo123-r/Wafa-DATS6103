@@ -190,19 +190,12 @@ fig = px.bar(admission_rates, x = "University Name" , y = "Admission Rate",
 fig.show()
 
 ```
-![image](https://user-images.githubusercontent.com/74209404/102154464-761acc80-3e47-11eb-80dc-2f0e0174a064.png)
-
-
 ### (B) Ivy League SAT Scores:
 ```
 fig1 = px.scatter(long_sat, x = "University Name" , y = "value",  hover_data = {'sat percentile'},
        color= "University Name" , title = 'Ivy League SAT Scores',  facet_col = 'sat section', height = 800)
 fig1.show()
 ```
-
-![image](https://user-images.githubusercontent.com/74209404/102154582-b24e2d00-3e47-11eb-8844-38c15dd6c913.png)
-
-
 ### (C) Ivy League Faculty Average Monthly Salary:
 ```
 fig2 = px.bar(salary, x = "University Name" , y = ' (Average Faculty Salary per month)', 
@@ -210,19 +203,12 @@ fig2 = px.bar(salary, x = "University Name" , y = ' (Average Faculty Salary per 
 fig2.show()
 
 ```
-![image](https://user-images.githubusercontent.com/74209404/102154651-dad62700-3e47-11eb-9753-ed9ed05152e8.png)
-
-
 ### (D)  Percentage of Enrollment by Ethnicity in Ivy League Universities:
 ```
 fig3 = px.bar(enroll, x = 'Ethnicity' , y = 'value', 
        color= 'University Name' , title = 'Percentage of Enrollment by Ethnicity', height = 1000, barmode = 'group')
 fig3.show()
 ```
-
-
-![image](https://user-images.githubusercontent.com/74209404/102154702-fa6d4f80-3e47-11eb-9222-4430a0ca101f.png)
-
 
 ### (E) Ivy League Tuition Fees:
 ```
@@ -231,39 +217,61 @@ fig4 = px.bar(cost, x = 'Fees' , y = 'Value',
 fig4.show()
 
 ```
-
-![image](https://user-images.githubusercontent.com/74209404/102154817-31436580-3e48-11eb-8133-611c14d7babc.png)
-
-
 ### (F)  Analysis 1: Tuition Cost Vs. Income in Ivy League Universities Only:
 ```
 px.scatter(roi, x = 'Average cost of attendance' , y = 'Mean earnings of students working and not enrolled 10 years after entry in the highest income tercile $75,001', 
        color= 'University Name' , title = 'Analysis')
 ```
-
-
-![image](https://user-images.githubusercontent.com/74209404/102154884-59cb5f80-3e48-11eb-93d3-3d197e2d9096.png)
-
-
 ### (H)  Analysis 2: Comparison of Tuition Cost Vs. Income in Ivy League and Non Ivy League:
 ```
 px.scatter(universities, x = 'Average cost of attendance' , y = 'Mean earnings of students working and not enrolled 10 years after entry in the highest income tercile $75,001', 
        color= 'Ivy league' , title = 'Analysis', hover_data ={'University Name'})
 
 ```
-
-
-![image](https://user-images.githubusercontent.com/74209404/102154987-9434fc80-3e48-11eb-9a5f-66752265d251.png)
-
-
-
 ### (I)  Analysis 3: Comparison of Admission rate Vs. SAT Scores 25th (math) in Ivy League and Non Ivy League:
 ```
 px.scatter(universities, x = "Admission Rate" , y = 'SAT Scores 25th (math)', 
        color= 'Ivy league' , title = 'Analysis', hover_data ={'University Name'})
 
 ```
+![image](https://user-images.githubusercontent.com/74209404/98618067-60593b00-22ce-11eb-8864-fc55304cb9f4.png)
+
+![image](https://user-images.githubusercontent.com/74209404/98620524-6f8eb780-22d3-11eb-99d9-6293490fb107.png)
+
+![image](https://user-images.githubusercontent.com/74209404/98620586-8c2aef80-22d3-11eb-96ee-bb9a587a3b65.png)
+
+![image](https://user-images.githubusercontent.com/74209404/98620642-abc21800-22d3-11eb-80c8-4f4382a1f6c8.png)
 
 
-![image](https://user-images.githubusercontent.com/74209404/102155057-b890d900-3e48-11eb-8558-857060ccedd7.png)
+## SECTION 4: Conclusion
 
+### Acceptance Rates
+
+When comparing the Ivy league universities, we see that harvard has the lowest acceptance rate while Cornell has the Highest acceptance rate
+
+###  Ivy League SAT Scores
+
+We see that Harvard has the highest SAT scores in the 75th percentile for crtitcal reading. As for the 75th percentile,  Harvard, Yale, Princton, and Columbia have equal math and writing SAT scores. 
+
+Cornell University has the lowest 75th and 25th percentiles SAT Scores in reading and math. Dartmouth university has the lowest 25th percentile SAT scores in writing
+
+### Ivy League Faculty Average Monthly Salary
+
+fig2 shows that Harvard, Princton and Stanford faculty have the highest average monthly salary. While Dartmouth university Faculty has the lowest average monthly salary
+
+### percentage of Enrollment By Ethnicity
+
+fig3 shows that the white ethnicity has the highest enrollmet in ivy league universities compared to other ethnicities and the second highest is the Asian ethnicitiy. Nevertheless, American Indians have the lowest percentage enrollment.
+
+
+### Ivy League Tuition Fees
+
+fig4 shows that Columbia university had the highest tuition fees, while Princeton university has the lowest tuition fees.
+
+
+
+### Analysis
+
+Students who are interested in attending the lowest cost university in which the univesity aulumuni earn the higest earning in the 75,000 should join Massachusetts Institute of Technology(MIT). The average cost of attending (MIT) is 67K and the average earning is 172K.
+
+Students who cannot afford to join Ivy League universities and want to join a university in which it's aulumni can earn as high as an ivey league aulumni should apply for the United States Merchant Marine Academy in which its alumni earn an average of 103K which is higher than Brown aulumni who earn an average of 91.7K
