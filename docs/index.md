@@ -11,9 +11,13 @@ The data was extracted from the U.S. DEPARTMENT OF EDUCATION , who collect their
 
 ```
 # Data Timeframe:
+
+```
 This data was last updated December 2, 2020.
 ```
+
 ## SECTION 1: UPLOADING AND SUMMARIZING THE DATA
+
 ```
 # Importing the packages
 import pandas
