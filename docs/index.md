@@ -26,24 +26,26 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 ```
-# Uploading the file from
+#Uploading the file from US Department of Education
 
+```
 df = pd.read_csv('C:\\Users\\wafa\\Desktop\\Introduction to Data Mining\\universities analysis.csv')
 ```
-```
-# Printing the dataframe
+#Printing the dataframe
 
+```
 df.head()
 ```
-```
-# The code below illustrates the number of rows and columns
+#The code below illustrates the number of rows and columns
 
+```
 df.shape
 ```
 ## SECTION 2: DATA FILTIRING & CLEANING
-```
-# Filtering the rows to choose the ivy-league for the analysis
 
+#Filtering the rows to choose the ivy-league for the analysis
+
+```
 ivy_list= ['Harvard University', 'Brown University','Columbia University in the City of New York', 'Cornell University', 'Princeton University','Yale University','Dartmouth College','Stanford University','Massachusetts Institute of Technology','Duke University','University of Pennsylvania']
 filt = universities['University Name'].isin(ivy_list)
 
@@ -52,110 +54,123 @@ universities['Ivy league'] = filt
 universities.head()
 ```
 
-```
-# Creating a vriable for ivy-league
 
+#Creating a vriable for ivy-league
+
+```
 ivy_league = universities[universities['Ivy league']]
 ivy_league
 ```
-```
-# selecting admissions rate columns and converting it to a percentage
 
+#selecting admissions rate columns and converting it to a percentage
+
+```
 admission_rates = ivy_league[['University Name','Admission Rate']]
 admission_rates['Admission Rate']= admission_rates['Admission Rate']*100
 admission_rates
 ```
-```
-# selecting 25th and 75th percentile SAT scores
 
+#selecting 25th and 75th percentile SAT scores
+
+```
 sat = ivy_league[['University Name','SAT Scores 25th (Critical Reading)','SAT Scores 25th (math)', 'SAT Scores 25th(writing)', 'SAT Scores 75th (critical reading)','SAT Scores75th(math)', 'SAT Scores 75th (writing)']]
 sat
 ```
-```
-#  Using panda melt to change the dataFrame from wide format to long format. The function is useful to massage a dataFrame into a format where one or more columns are identifier variables (id_vars), while all other columns, considered measured variables (value_vars)
 
+#Using panda melt to change the dataFrame from wide format to long format. The function is useful to massage a dataFrame into a format where one or more columns are identifier variables (id_vars), while all other columns, considered measured variables (value_vars)
+
+```
 pd.melt(sat, id_vars=['University Name'], value_vars=['SAT Scores 25th (Critical Reading)','SAT Scores 25th (math)', 'SAT Scores 25th(writing)', 'SAT Scores 75th (critical reading)','SAT Scores75th(math)', 'SAT Scores 75th (writing)'])
 
 ```
-```
-# creating a vraiable for pd.melt, dropping the NaN values, and 
+#creating a vraiable for pd.melt, dropping the NaN values, and 
 
+```
 long_sat = pd.melt(sat, id_vars=['University Name'], value_vars=['SAT Scores 25th (Critical Reading)','SAT Scores 25th (math)', 'SAT Scores 25th(writing)', 'SAT Scores 75th (critical reading)','SAT Scores75th(math)', 'SAT Scores 75th (writing)'])
 long_sat = long_sat.dropna()
+```
 
-# creating a 0 value for variable column in long_sat dataframe
+#creating a 0 value for variable column in long_sat dataframe
 
+```
 sat_temp = long_sat['variable'].str.split("(",expand=True)
 sat_temp
 ```
-```
-# adding two columns to long_sat dataframe and rena,ing them to  sat section and sate percentile
 
+#adding two columns to long_sat dataframe and rena,ing them to  sat section and sate percentile
+```
 long_sat['sat section'] = sat_temp[1]
 long_sat['sat percentile'] = sat_temp[0]
 long_sat
 ```
 
-```
-# removing the variable column 
+#removing the variable column 
 
+```
 long_sat = long_sat.drop(columns = 'variable')
 long_sat
 ```
 
-```
-# removing the parenthesis in the sat section variable 
 
+#removing the parenthesis in the sat section variable 
+
+```
 long_sat['sat section'] = long_sat['sat section'].str.slice(0,-1)
 long_sat
 ```
-```
-# converting the first letter of the tests names in the sat section column into lowercse 
 
+#converting the first letter of the tests names in the sat section column into lowercse 
+
+```
 long_sat['sat section'] = long_sat['sat section'].str.lower()
 long_sat
 ```
 
-```
-# Selecting Average faculty salary per month
 
+#Selecting Average faculty salary per month
+
+```
 salary = ivy_league[['University Name', ' (Average Faculty Salary per month)']]
 salary 
 ```
-```
-# check ivy_league columns
 
+#check ivy_league columns
+```
 ivy_league.columns
 ```
+
+#Selecting the columns needed from the ivy_league datarame
+
 ```
-# Selecting the columns needed from the ivy_league datarame
-
 cost = ivy_league[['University Name','Average cost of attendance', 'In State Tuition', 'Out of  State Tuition']]
+```
 
-# Renaming the columns
+#Renaming the columns
 
+```
 cost = cost.rename(columns = {'Average cost of attendance': 'Average academic cost'})
 cost
 ```
-```
-# creating a list for the required columns, a shortcut for choosing the columns
 
+#creating a list for the required columns, a shortcut for choosing the columns
+
+```
 columns = list(cost.columns)
 columns
 ```
-```
-#  Using panda melt to change the dataFrame from wide format to long format. The function is useful to massage a dataFrame into a format where one or more columns are identifier variables (id_vars), while all other columns, considered measured variables (value_vars)
-# to chose from index 1 use this code value_vars=columns[1:] 
 
+#Using panda melt to change the dataFrame from wide format to long format. The function is useful to massage a dataFrame into a format where one or more columns are identifier variables (id_vars), while all other columns, considered measured variables (value_vars)
+#to chose from index 1 use this code value_vars=columns[1:] 
+
+```
 cost = pd.melt(cost, id_vars=['University Name'], value_vars=columns[1:], var_name = 'Fees', value_name = 'Value')
 cost
+```
+
+#selcet Share of enrollment by ethnicity
+#multiply the columns chosen by 100, since it is a percentage
 
 ```
-```
-# selcet Share of enrollment by ethnicity
-
-# multiply the columns chosen by 100, since it is a percentage
-
 enrollment = ivy_league[[ 'Undergraduate total enrollmant share- white', 'Undergraduate total enrollmant share- Black', 'Undergraduate total enrollmant share- Hispanic', 'Undergraduate total enrollmant share- Asian',
                          'Undergraduate total enrollmant share- American Indian/Alaska Native']]*100
 
@@ -168,16 +183,18 @@ enroll = pd.melt(enrollment, id_vars=['University Name'], value_vars=['Undergrad
 enroll
 ```
 
-```
+
 #Selceting Students' average earnigns
 
+```
 average_earnings = ivy_league[['University Name','Mean earnings of students working and not enrolled 10 years after entry in the highest income tercile $75,001']]
 average_earnings
 ```
 
-```
-# filtiring the columns needed for the analysis
 
+#filtiring the columns needed for the analysis
+
+```
 roi = ivy_league[['University Name',
                  'Mean earnings of students working and not enrolled 10 years after entry in the highest income tercile $75,001',
                 
@@ -186,6 +203,7 @@ roi
 ```
 ## SECTION 3: GRAPHICAL REPRESENTATION
 ### (A) Ivy League Universities Acceptance Rates:
+
 ```
 # Admissions rate
 
